@@ -22,23 +22,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         /*
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
         */
+        
+        /*
+        let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
+        let sphere = SCNSphere(radius: 0.2)
         
         let redColorMaterial = SCNMaterial()
         let moonTextureMaterial = SCNMaterial()
         redColorMaterial.diffuse.contents = UIColor.red
         moonTextureMaterial.diffuse.contents = UIImage(named: "art.scnassets/8k_moon.jpg")
-
-        let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
         cube.materials = [redColorMaterial]
-
-        let sphere = SCNSphere(radius: 0.2)
         sphere.materials = [moonTextureMaterial]
 
         let cubeNode = SCNNode()
@@ -48,7 +42,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         cubeNode.geometry = cube
         sphereNode.geometry = sphere
         sceneView.scene.rootNode.addChildNode(sphereNode)
+        */
+        
         sceneView.autoenablesDefaultLighting = true
+        
+        let diceScene = SCNScene(named: "art.scnassets/diceCollada.scn")!
+        if let diceNode = diceScene.rootNode.childNode(withName: "Dice", recursively: true) {
+            diceNode.position = SCNVector3(x: 0, y: 0, z: -0.1)
+            sceneView.scene.rootNode.addChildNode(diceNode)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
