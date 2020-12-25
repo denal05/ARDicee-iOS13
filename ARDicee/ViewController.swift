@@ -124,6 +124,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         rollAllDice()
     }
     
+    @IBAction func removeAllDice(_ sender: UIBarButtonItem) {
+        if !diceArray.isEmpty {
+            for dice in diceArray {
+                dice.removeFromParentNode()
+            }
+        }
+    }
+    
     // MARK: - ARSCNViewDelegate
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
